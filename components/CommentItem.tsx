@@ -23,25 +23,25 @@ export const CommentItem: FC<Omit<Comment, 'created_at' | 'note_id'>> = ({
   return (
     <li className="my-3">
       <span>{content}</span>
-      {userId === user_id} && (
-      <div className="float-right ml-20 flex">
-        <PencilAltIcon
-          className="mx-1 h-5 w-5 cursor-pointer text-blue-500"
-          onClick={() => {
-            update({
-              id: id,
-              content: content,
-            })
-          }}
-        />
-        <TrashIcon
-          className="h-5 w-5 cursor-pointer text-blue-500"
-          onClick={() => {
-            deleteCommentMutation.mutate(id)
-          }}
-        />
-      </div>
-      )
+      {userId === user_id && (
+        <div className="float-right ml-20 flex">
+          <PencilAltIcon
+            className="mx-1 h-5 w-5 cursor-pointer text-blue-500"
+            onClick={() => {
+              update({
+                id: id,
+                content: content,
+              })
+            }}
+          />
+          <TrashIcon
+            className="h-5 w-5 cursor-pointer text-blue-500"
+            onClick={() => {
+              deleteCommentMutation.mutate(id)
+            }}
+          />
+        </div>
+      )}
     </li>
   )
 }
